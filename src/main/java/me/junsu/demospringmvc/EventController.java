@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EventController {
     private final EventService eventService;
 
-    public EventController() {
-        this.eventService = new EventService();
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
     }
 
     @GetMapping("/events")
