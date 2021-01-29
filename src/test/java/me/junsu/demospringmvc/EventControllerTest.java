@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest({EventController.class, EventService.class, MyFormatter.class})
+@WebMvcTest({EventController.class, EventService.class, MyConverter.class})
 class EventControllerTest {
 
     @Autowired
@@ -32,5 +32,12 @@ class EventControllerTest {
         this.mockMvc.perform(get("/hi/junsulee"))
                 .andDo(print())
                 .andExpect(content().string("hi junsulee"));
+    }
+
+    @Test
+    public void getUser() throws Exception {
+      this.mockMvc.perform(get("/user").param("id", "1"))
+              .andDo(print())
+              .andExpect(content().string("Mr.Lee"));
     }
 }

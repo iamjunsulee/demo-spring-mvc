@@ -10,9 +10,7 @@ import java.util.Locale;
 public class MyFormatter implements Formatter<User> {
     @Override
     public User parse(String s, Locale locale) throws ParseException {
-        User user = new User();
-        user.setName(s);
-        return user;
+        return new User(1L, s);
     }
 
     @Override
