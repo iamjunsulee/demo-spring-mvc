@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest({EventController.class, EventService.class, MyConverter.class})
+@WebMvcTest({EventController.class, EventService.class, MyConverter.class, MyInterceptor.class})
 class EventControllerTest {
 
     @Autowired
