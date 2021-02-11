@@ -1,5 +1,8 @@
 package me.junsu.demospringmvc;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class EventController {
     private final EventService eventService;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public EventController(EventService eventService) {
         this.eventService = eventService;
@@ -45,6 +49,15 @@ public class EventController {
         return user;
     }
 
+    /*
+    argument resolver
+     */
+    @GetMapping("/parameter")
+    @ResponseBody
+    public String getParameter(Header header) {
+        logger.info("[user-agent]" + header.get("user-agent"));
+        return "hi";
+    }
 //    @GetMapping("/{id}")
 //    @ResponseBody
 //    public User getId(@PathVariable long id) {
