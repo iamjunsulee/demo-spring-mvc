@@ -63,4 +63,19 @@ public class EventController {
 //    public User getId(@PathVariable long id) {
 //        return
 //    }
+
+    /*
+    http method
+     */
+    @GetMapping("/method")
+    @ResponseBody
+    public String getHttpMethodGet() {
+        return "get";
+    }
+
+    @PostMapping("/method")
+    @ResponseBody
+    public String getHttpMethodPost() {
+        return "post";
+    }
 }

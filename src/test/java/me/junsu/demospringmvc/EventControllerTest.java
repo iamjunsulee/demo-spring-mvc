@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -67,5 +67,18 @@ class EventControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("leejunsu"))
         ;
+    }
+
+    @Test
+    public void getHttpMethodTest() throws Exception {
+        this.mockMvc.perform(post("/method"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("post"))
+                .andExpect(handler().handlerType(EventController.class));
+
+        this.mockMvc.perform(put("/method"))
+                .andDo(print())
+                .andExpect(status().isMethodNotAllowed());
     }
 }
