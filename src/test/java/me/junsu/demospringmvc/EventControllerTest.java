@@ -71,14 +71,14 @@ class EventControllerTest {
 
     @Test
     public void getHttpMethodTest() throws Exception {
-        this.mockMvc.perform(post("/method"))
+        this.mockMvc.perform(get("/method").contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("post"))
+                .andExpect(content().string("get"))
                 .andExpect(handler().handlerType(EventController.class));
 
-        this.mockMvc.perform(put("/method"))
-                .andDo(print())
-                .andExpect(status().isMethodNotAllowed());
+//        this.mockMvc.perform(put("/method"))
+//                .andDo(print())
+//                .andExpect(status().isMethodNotAllowed());
     }
 }
