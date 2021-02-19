@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -71,7 +72,8 @@ class EventControllerTest {
 
     @Test
     public void getHttpMethodTest() throws Exception {
-        this.mockMvc.perform(get("/method").contentType(MediaType.APPLICATION_JSON))
+        this.mockMvc.perform(get("/list")
+                    .header(HttpHeaders.ALLOW, "hi"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string("get"))

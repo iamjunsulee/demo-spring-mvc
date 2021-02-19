@@ -3,6 +3,7 @@ package me.junsu.demospringmvc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +75,13 @@ public class EventController {
             , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String getHttpMethodGet() {
+        return "get";
+    }
+
+    @RequestMapping(value = "/list"
+            , headers = HttpHeaders.ALLOW)
+    @ResponseBody
+    public String getHttpMethod() {
         return "get";
     }
 
