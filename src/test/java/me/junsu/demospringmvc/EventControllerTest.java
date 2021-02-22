@@ -83,4 +83,11 @@ class EventControllerTest {
 //                .andDo(print())
 //                .andExpect(status().isMethodNotAllowed());
     }
+
+    @Test
+    public void getHttpMethodHeader() throws Exception {
+        this.mockMvc.perform(options("/header"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }

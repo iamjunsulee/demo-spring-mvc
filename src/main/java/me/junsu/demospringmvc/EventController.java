@@ -90,4 +90,16 @@ public class EventController {
     public String getHttpMethodPost() {
         return "post";
     }
+
+    @GetMapping("/header")
+    @ResponseBody
+    public String getHttpMethodHeader() {
+        return "header";
+    }
+
+    @PostMapping("/header")
+    @ResponseBody
+    public String getHttpMethodHeader2() {
+        return "header";
+    }
 }
