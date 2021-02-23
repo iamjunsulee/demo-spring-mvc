@@ -102,4 +102,8 @@ public class EventController {
     public String getHttpMethodHeader2() {
         return "header";
     }
+
+    @HelloBook("/helloBook")
+    @ResponseBody
+    public String getHelloBook() { return "Hello Book"; }
 }

@@ -90,4 +90,12 @@ class EventControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void customAnnotationTest() throws Exception {
+        this.mockMvc.perform(get("/helloBook"))
+                .andDo(print())
+                .andExpect(content().string("Hello Book"))
+        ;
+    }
 }
