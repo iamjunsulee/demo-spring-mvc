@@ -1,9 +1,9 @@
 package me.junsu.demospringmvc;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class SampleController {
@@ -13,5 +13,11 @@ public class SampleController {
         Event event = new Event();
         event.setId(value);
         return event;
+    }
+
+    @PostMapping("/event")
+    @ResponseBody
+    public String getParameter(@RequestParam Optional<String> name) {
+        return "name : " + name.orElseGet(() -> "not provided");
     }
 }
