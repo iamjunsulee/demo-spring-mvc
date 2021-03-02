@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Event</title>
+</head>
+<body>
+    <form action="#" th:action="@{/event/create}" th:object="${event}" method="post">
+        <input type="text" th:field="*{name}" value="">
+        <input type="text" th:field="*{limitOfEnrollment}" value="">
+        <button type="submit" >저장</button>
+    </form>
+</body>
+</html>
