@@ -2,6 +2,7 @@ package me.junsu.demospringmvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -37,10 +38,13 @@ public class SampleController {
 
     @PostMapping("/event/create")
     @ResponseBody
-    public Event createForm(@RequestParam String name, @RequestParam int limitOfEnrollment) {
-        Event event = new Event();
-        event.setName(name);
-        event.setLimitOfEnrollment(limitOfEnrollment);
+    //public Event createForm(@RequestParam String name, @RequestParam int limitOfEnrollment) {
+    public Event createForm(@ModelAttribute Event event, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            System.out.println("===========================================");
+            bindingResult.getAllErrors().forEach(b -> System.out.println(b.toString()));
+            System.out.println("===========================================");
+        }
         return event;
     }
 }

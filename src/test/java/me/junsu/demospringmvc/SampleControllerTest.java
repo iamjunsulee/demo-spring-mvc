@@ -35,4 +35,13 @@ class SampleControllerTest {
                 .andExpect(status().isOk())
         ;
     }
+
+    @Test
+    public void getModelAttributeTest() throws Exception {
+        this.mockMvc.perform(post("/event/create")
+                    .param("limitOfEnrollment", "junsu"))
+                .andDo(print())
+                .andExpect(status().isOk())
+        ;
+    }
 }
