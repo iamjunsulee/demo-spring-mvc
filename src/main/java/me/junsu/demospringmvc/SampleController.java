@@ -6,6 +6,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -33,18 +35,38 @@ public class SampleController {
         event.setEndDateTime(LocalDateTime.now());
         event.setLimitOfEnrollment(10);
         model.addAttribute("event", event);
-        return "events/form";
+        return "/events/form";
     }
 
     @PostMapping("/event/create")
-    @ResponseBody
     //public Event createForm(@RequestParam String name, @RequestParam int limitOfEnrollment) {
-    public Event createForm(@ModelAttribute Event event, BindingResult bindingResult) {
+    public String createForm(@ModelAttribute Event event, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
-            System.out.println("===========================================");
-            bindingResult.getAllErrors().forEach(b -> System.out.println(b.toString()));
-            System.out.println("===========================================");
+//            System.out.println("===========================================");
+//            bindingResult.getAllErrors().forEach(b -> System.out.println(b.toString()));
+//            System.out.println("===========================================");
+            return "/events/form";
         }
-        return event;
+        List<Event> events = new ArrayList<>();
+        events.add(event);
+        model.addAttribute("events", events);
+
+        return "redirect:/event/list";
+    }
+
+    @GetMapping("/event/list")
+    public String getList(Model model) {
+        Event event = new Event();
+        event.setLimitOfEnrollment(10);
+        event.setId(1L);
+        event.setEndDateTime(LocalDateTime.now());
+        event.setEndDateTime(LocalDateTime.now());
+        event.setName("hihihihi");
+
+        List<Event> events = new ArrayList<>();
+        events.add(event);
+        model.addAttribute("events", events);
+
+        return "/events/list";
     }
 }
