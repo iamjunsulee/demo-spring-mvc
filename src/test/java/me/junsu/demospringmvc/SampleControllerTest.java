@@ -44,4 +44,12 @@ class SampleControllerTest {
                 .andExpect(status().isOk())
         ;
     }
+
+    @Test
+    public void modelAttributeTest() throws Exception {
+        this.mockMvc.perform(get("/event/list"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("categories"));
+    }
 }

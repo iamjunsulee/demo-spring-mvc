@@ -12,6 +12,12 @@ import java.util.Optional;
 
 @Controller
 public class SampleController {
+    //공통적으로 사용할 값의 경우, @ModelAttribute를 사용하면 좋다.
+    @ModelAttribute
+    public void categories(Model model) {
+        model.addAttribute("categories", List.of("study", "seminar", "social", "hobby"));
+    }
+
     @GetMapping("/event/{id}")
     @ResponseBody
     public Event getEvent(@PathVariable("id") Long value) { //mapping에 적은 변수명과 꼭 동일하게 작성하지 않아도 됨.
